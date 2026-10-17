@@ -1,0 +1,19 @@
+# 运行产物
+screened*.json
+filter_data*.json
+fd_*.json
+*筛选器*.html
+*.html
+!assets/filter_template.html
+
+# 画像含个人信息，严禁提交
+profile*.json
+!examples/profile.example.json
+
+# Python
+__pycache__/
+*.pyc
+
+# 系统
+.DS_Store
+Thumbs.db
