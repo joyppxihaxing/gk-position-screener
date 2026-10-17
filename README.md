@@ -4,6 +4,13 @@
 自带 2027 国考职位表（19,426 个岗位）与 2022–2026 五年竞争数据（87,079 条记录），全程不需要联网检索。输入你的个人条件，输出一个双击就能打开的、可交互的全国岗位筛选器网页。
 
 <p align="center">
+  <img src="https://img.shields.io/badge/license-MIT-3ddc97?style=flat-square" alt="MIT">
+  <img src="https://img.shields.io/badge/python-3.8%2B-3776ab?style=flat-square&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/%E8%81%8C%E4%BD%8D%E6%95%B0-19%2C426-4c8dff?style=flat-square" alt="positions">
+  <img src="https://img.shields.io/badge/%E7%A6%BB%E7%BA%BF%E5%8F%AF%E8%B7%91-%E6%97%A0%E9%9C%80%E8%81%94%E7%BD%91-ffb454?style=flat-square" alt="offline">
+</p>
+
+<p align="center">
   <img src="docs/preview.png" width="820" alt="筛选器首屏：省/市/岗三栏 + 竞争比排序">
 </p>
 <p align="center">
@@ -35,6 +42,9 @@
 ## 快速开始
 
 ```bash
+git clone https://github.com/joyppxihaxing/gk-position-screener.git
+cd gk-position-screener
+
 # 1. 写考生画像（结构见 examples/profile.example.json）
 cp examples/profile.example.json my_profile.json
 # 编辑 my_profile.json，填入真实条件；不适用的字段直接删掉
@@ -51,7 +61,7 @@ python scripts/build_html.py --data filter_data.json   --profile my_profile.json
 
 ## 作为 Agent Skill 使用
 
-本仓库同时是一个 [Agent Skill](https://agent-skills.spec)（`SKILL.md` + 脚本 + 数据包结构）。如果你的 AI 助手支持 Skill 机制，把整个目录放进 skills 目录即可，`SKILL.md` 已写明触发词（"筛岗位""竞争比""好考的岗位""退役士兵报岗"等）与四阶段工作流：**采集画像 → 筛选 → 补全 → 交付解读**。
+本仓库同时是一个 **Agent Skill**（`SKILL.md` + 脚本 + 数据包的标准结构）。如果你的 AI 助手支持 Skill 机制，把整个目录放进 skills 目录即可，`SKILL.md` 已写明触发词（"筛岗位""竞争比""好考的岗位""退役士兵报岗"等）与四阶段工作流：**采集画像 → 筛选 → 补全 → 交付解读**。
 
 画像采集有讲究：**身份类型是最大的隐藏变量**——它决定能否解锁定向岗位池，漏问一次可能丢掉几百个低竞争岗位。完整字段定义见 [references/profile-schema.md](references/profile-schema.md)。
 
