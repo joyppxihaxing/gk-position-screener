@@ -30,3 +30,17 @@
 python scripts/update_data.py --positions 新职位表.json --year 2028
 python scripts/update_data.py --src 新工作目录 --year 2028
 ```
+
+## 报名期实测快照（2027 新增）
+
+- `rank_2027_live_1021.json.gz` / `rank_2027_live_1024.json.gz`：2027 报名期两日快照
+  （10/21 全国 168.3 万人 → 10/24 收官 280.6 万人），19,426 条/期，约 280KB/期。
+- 字段：`prov / dept / pos / hire / apply / ratio / code`（code=职位代码尾部 12 位）。
+- 来源：华图职位报名榜 `hb.huatu.com/zw/rank/index.php?act=bmrs`，抓取脚本
+  `scripts/fetch_rank2027_live.py`。**与岗位表 join 必须用
+  (职位代码, 岗位名, 招录数, 省份) 四元组**——职位代码跨省重复，且华图省名写法
+  与职位表不同（内蒙古 vs 内蒙）。
+- 用途：报名期把预测值替换为实测值（conf='R'），并对比多日快照计算增量、
+  估算最后一天涨幅。
+- 实证结论（已验证）：冷门岗位在报名期会被"捡漏攻略"快速填平——预测中位
+  61:1 → 实测中位 242:1，三天涨幅 24%-128%。

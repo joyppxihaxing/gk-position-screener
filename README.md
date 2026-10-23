@@ -97,6 +97,7 @@ gk-position-screener/
 |---|---|---|
 | `positions_2027.json.gz` | 官方职位表精简版（23 个参与筛选/展示的字段） | 19,426 条 |
 | `rank_2022_2026.json.gz` | 历年报名人数 / 过审人数 / 招录人数，按年分键 | 5 年 87,079 条 |
+| `rank_2027_live_*.json.gz` | 2027 报名期实测快照（10/21 与 10/24 收官两期） | 2 期 × 19,426 条 |
 | `scores_henan.json.gz` | 河南省历年进面最低分（官网面试名单整理） | 4,410 条 |
 
 口径要点（详见 [data/MANIFEST.md](data/MANIFEST.md)）：
@@ -129,6 +130,15 @@ python scripts/update_data.py --positions 新职位表.json --year 2028
 # 或从既有工作目录整包更新（职位表 + 新一年竞争数据 + 进面分）：
 python scripts/update_data.py --src <工作目录> --year 2028
 ```
+
+**报名期实时刷新**（可选）：报名窗口内每天抓一次实测报名数，把预测替换为实测：
+
+```bash
+python scripts/fetch_rank2027_live.py --out rank_live_$(date +%m%d).json
+```
+
+⚠ 实证警告：2027 报名期实测显示，低竞争岗位会被"捡漏攻略"在几天内填平
+（预测中位 61:1 → 实测中位 242:1）。报名决策应以最新实测数据为准，历史预测只作参考。
 
 ## 免责声明
 
