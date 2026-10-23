@@ -415,6 +415,7 @@ function renderList(){
     if(r.pct) tags.push('<span class="tg o">百分制</span>');
     if(r.cet4) tags.push('<span class="tg o">四级</span>');
     if(r.stale) tags.push('<span class="tg o">历史口径变</span>');
+    if(r.conf==="R" && r.N>0) tags.push('<span class="tg g">实测'+r.N+'人</span>');
     if(!r.h.length) tags.push('<span class="tg d">无历史</span>');
     else if(r.h.length>=3) tags.push('<span class="tg d">'+r.h.length+'年</span>');
     h += `<div class="row t-${tr}${st?" sel":""}" data-i="${i}">
@@ -528,10 +529,12 @@ function drawerBody(r){
   let h = "";
 
   // 指标卡
+  const real = r.conf==="R" && r.N>0;
+  const rd = real ? (String(r.src).match(/(\d{1,2}\/\d{1,2})/)||[])[1] || "" : "";
   h += `<div class="mcard">
     <div><div class="k">预测竞争比</div><div class="v" style="color:${TC[tr]}">${fmt(r.ratio)}<small>:1</small></div></div>
     <div><div class="k">招录 / 进面</div><div class="v">${r.hire}<small>人</small> / ${r.adv}<small>人</small></div></div>
-    <div><div class="k">预测报名</div><div class="v">${fmt(r.N)}<small>人</small></div></div>
+    <div style="${real?"border-color:#3ddc97;box-shadow:inset 0 0 0 1px #3ddc97":""}"><div class="k" style="${real?"color:#3ddc97":""}">${real?"实际报名"+(rd?" · "+rd:""):"预测报名"}</div><div class="v" style="${real?"color:#3ddc97":""}">${fmt(r.N)}<small>人</small></div></div>
     <div><div class="k">预估进面线</div><div class="v">${r.pct?"≈":""}${r.score.toFixed(1)}</div></div>
   </div>`;
 
