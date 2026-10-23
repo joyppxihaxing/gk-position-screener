@@ -2,30 +2,38 @@
   "_说明": "考生画像。agent 采集完信息后照这个结构填，缺的字段删掉即可（会按'未提供'降级处理）",
   "exam_year": 2027,
   "name": "（可留空）",
-
   "edu_level": "本科",
   "degree": "学士",
   "major_name": "电子信息工程",
   "major_code": "0807",
-  "major_classes": ["电子信息类"],
+  "major_classes": [
+    "电子信息类"
+  ],
   "major_gate": "工学",
-
   "politics": "共青团员",
   "fresh": false,
   "grad_year": 2024,
   "gender": "男",
-
   "hukou_prov": "河南",
   "hukou_city": "",
   "grassroots_years": 2,
-
-  "identities": ["退役士兵"],
+  "identities": [
+    "退役士兵"
+  ],
   "military_years": 2,
-
-  "certs": {"cet4": false, "cet6": false, "legal": false, "cpa": false},
-
+  "certs": {
+    "cet4": false,
+    "cet6": false,
+    "legal": false,
+    "cpa": false,
+    "softadv": false,
+    "softmid": false,
+    "_说明": "softadv=软考高级(信息系统项目管理师/系统架构设计师等), softmid=软考中级(软件设计师/网络工程师等)。备注要求证书而你恰好有时设为 true"
+  },
   "prefs": {
-    "provs": ["河南"],
+    "provs": [
+      "河南"
+    ],
     "ratio_max": 60,
     "no_service_period": true,
     "hire_min": 1,
